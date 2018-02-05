@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+    http://java.sun.com/xml/ns/persistence
+    http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+
+	<persistence-unit name="${persistence.name}" transaction-type="RESOURCE_LOCAL">
+
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		
+		<class>hr.tennis.bot.model.entity.betting.BettingHouse</class>
+		<class>hr.tennis.bot.model.entity.betting.Odd</class>
+		<class>hr.tennis.bot.model.entity.match.DoublesMatch</class>
+		<class>hr.tennis.bot.model.entity.match.Match</class>
+		<class>hr.tennis.bot.model.entity.match.SinglesMatch</class>
+		<class>hr.tennis.bot.model.entity.match.result.Result</class>
+		<class>hr.tennis.bot.model.entity.match.result.SetResult</class>
+		<class>hr.tennis.bot.model.entity.player.Player</class>
+		<class>hr.tennis.bot.model.entity.player.Ranking</class>
+		<class>hr.tennis.bot.model.entity.tournament.Round</class>
+		<class>hr.tennis.bot.model.entity.tournament.Tournament</class>
+		<class>hr.tennis.bot.model.entity.tournament.TournamentInstance</class>
+
+		<properties>
+			<property name="hibernate.bytecode.use_reflection_optimizer" value="true" />
+			<property name="hibernate.default_batch_fetch_size" value="100" />
+			<property name="hibernate.cache.use_second_level_cache" value="true" />
+			<property name="hibernate.cache.use_query_cache" value="true" />
+			<property name="hibernate.cache.provider_class" value="net.sf.ehcache.hibernate.EhCacheProvider" />
+
+			<property name="hibernate.archive.autodetection" value="class, hbm" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="validate" />  <!-- export schema with ant tasks -->
+			<property name="hibernate.transaction.flush_before_completion" value="true" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+			<!-- Set isolation level to repeatable_read (read_commited je 2) -->
+			<property name="hibernate.connection.isolation" value="4" />
+			<property name="hibernate.connection.release_mode" value="after_transaction" />
+
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://${persistence.host}:${persistence.port}/${persistence.dbname}?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8" />
+			<property name="hibernate.connection.username" value="${persistence.username}" />
+			<property name="hibernate.connection.password" value="${persistence.password}" />
+			<!-- <property name="hibernate.c3p0.min_size" value="5" />
+			<property name="hibernate.c3p0.max_size" value="50" />
+			<property name="hibernate.c3p0.timeout" value="300" />
+			<property name="hibernate.c3p0.max_statements" value="50" />
+			<property name="hibernate.c3p0.idle_test_period" value="600" /> -->
+			<!-- This slows down things <property name="hibernate.c3p0.validate" value="true"/> -->
+		</properties>
+		
+	</persistence-unit>
+</persistence>

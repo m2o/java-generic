@@ -1,0 +1,7 @@
+create database tennisbotdb;
+grant all on tennisbotdb.* to tbuser@'localhost' identified by 'tbpass';
+
+create database tennisbotdb_test;
+grant all on tennisbotdb_test.* to tbuser@'localhost' identified by 'tbpass';
+
+flush privileges;
